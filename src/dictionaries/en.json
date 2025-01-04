@@ -1,0 +1,49 @@
+{
+  "root-layout": {
+    "metadata": {
+      "title": {
+        "default": "Theme Picker",
+        "template": "%s | Theme Picker"
+      },
+      "description": "Discover customizable eCommerce themes designed for performance, accessibility, and SEO. Choose Minimalist, Bold & Dynamic, or Classic styles to enhance your store's experience."
+    }
+  },
+  "home-page": {
+    "metadata": {
+      "title": "Home",
+      "description": "Discover customizable eCommerce themes designed for performance, accessibility, and SEO. Choose Minimalist, Bold & Dynamic, or Classic styles to enhance your store's experience."
+    }
+  },
+  "hero": {
+    "headline": "Build Your Dream Store",
+    "subheading": "Discover customizable, performance-driven themes built for SEO, responsiveness, and accessibility."
+  },
+  "features": {
+    "headline": "Powerful Features for Every Theme",
+    "subheading": "Designed to deliver exceptional performance and usability.",
+    "performance": {
+      "title": "Performance",
+      "description": "Built with Next.js for speed, scalability, and modern performance."
+    },
+    "seo": {
+      "title": "SEO",
+      "description": "Search engine optimization baked into every design."
+    },
+    "responsiveness": {
+      "title": "Responsiveness",
+      "description": "Optimized for all devices—mobile, tablet, and desktop."
+    },
+    "accessibility": {
+      "title": "Web Accessibility",
+      "description": "Ensuring inclusivity with designs that comply with accessibility standards."
+    },
+    "ux": {
+      "title": "UX Principles",
+      "description": "User-focused designs ensuring smooth and intuitive interactions."
+    },
+    "multiLanguage": {
+      "title": "Multi-language Support",
+      "description": "Easily localize content to cater to a global audience."
+    }
+  }
+}
