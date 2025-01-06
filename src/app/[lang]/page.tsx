@@ -42,7 +42,7 @@ export default async function Home({ params }: Props) {
         <Separator className="separator" />
 
         <Container>
-          <Themes dictionary={dict.themes} />
+          <Themes dictionary={dict.themes} lang={params.lang} />
         </Container>
       </main>
     </>
