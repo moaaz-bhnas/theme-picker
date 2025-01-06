@@ -16,7 +16,8 @@
   },
   "hero": {
     "headline": "Build Your Dream Store",
-    "subheading": "Discover customizable, performance-driven themes built for SEO, responsiveness, and accessibility."
+    "subheading": "Discover customizable, performance-driven themes built for SEO, responsiveness, and accessibility.",
+    "cta": "Choose a Theme"
   },
   "features": {
     "headline": "Powerful Features for Every Theme",
@@ -45,5 +46,22 @@
       "title": "Multi-language Support",
       "description": "Easily localize content to cater to a global audience."
     }
+  },
+  "themes": {
+    "headline": "Explore Our Themes",
+    "subheading": "Choose a theme that fits your brand and start customizing it today.",
+    "minimalist": {
+      "title": "Minimalist",
+      "description": "Sleek and clean design, focusing on simplicity and elegance for modern eCommerce."
+    },
+    "boldDynamic": {
+      "title": "Bold & Dynamic",
+      "description": "Eye-catching and vibrant layout, perfect for brands that want to make a statement."
+    },
+    "classic": {
+      "title": "Classic",
+      "description": "Timeless and structured style, ideal for traditional businesses and reliable appeal."
+    },
+    "customize": "Customize"
   }
 }

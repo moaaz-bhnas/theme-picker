@@ -4,6 +4,7 @@ import Hero from "./components/Hero";
 import Features from "./components/Features";
 import { getDictionary } from "@/lib/helpers/dictionaries";
 import { Locale } from "@/types/Locale";
+import Themes from "./components/Themes";
 
 export async function generateMetadata({ params }: { params: { lang: Locale } }) {
   const {
@@ -31,13 +32,17 @@ export default async function Home({ params }: Props) {
         <Hero dictionary={dict.hero} />
       </Container>
 
-      <Container className="!p-0">
-        <Separator />
-      </Container>
+      <Separator className="separator" />
 
       <main>
         <Container>
           <Features dictionary={dict.features} />
+        </Container>
+
+        <Separator className="separator" />
+
+        <Container>
+          <Themes dictionary={dict.themes} />
         </Container>
       </main>
     </>
