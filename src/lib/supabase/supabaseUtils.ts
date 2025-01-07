@@ -1,7 +1,7 @@
 import "server-only";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { cache } from "react";
-import { Database } from "@/types/supabase/Database";
+import { Database, Tables, TablesInsert } from "@/types/supabase/Database";
 
 export default class SupabaseUtils {
   constructor(private supabase: SupabaseClient<Database>) {}
@@ -14,5 +14,30 @@ export default class SupabaseUtils {
   getThemeImage(bucket: string, path: string) {
     const result = this.supabase.storage.from(bucket).getPublicUrl(path);
     return result.data.publicUrl || "";
+  }
+
+  getCustomization = cache(async <Table = Tables<"customizations">>(uuid: string, fields = "*") => {
+    const result = await this.supabase
+      .from("customizations")
+      .select(fields)
+      .eq("uuid", uuid)
+      .returns<Table[]>()
+      .single();
+
+    return result.data || null;
+  });
+
+  async createCustomization<Table = Tables<"customizations">>(
+    customization: TablesInsert<"customizations">,
+    fields = "*"
+  ) {
+    const result = await this.supabase
+      .from("customizations")
+      .insert(customization)
+      .select(fields)
+      .returns<Table[]>()
+      .single();
+
+    return result.data || null;
   }
 }
