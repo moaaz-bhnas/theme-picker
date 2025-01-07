@@ -29,7 +29,7 @@ async function CustomizeThemePage({ params }: Props) {
     return result;
   })();
 
-  return <div>pages</div>;
+  return <div>Customize page</div>;
 }
 
 export default CustomizeThemePage;

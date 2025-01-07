@@ -1,10 +1,10 @@
 import React from "react";
-import StickyBar from "@/components/StickyBar";
 import Link from "next/link";
 import { PaletteIcon } from "lucide-react";
 import { Locale } from "@/types/Locale";
 import LanguagePicker from "./components/LanguagePicker";
 import { getDictionary } from "@/lib/helpers/dictionaries";
+import StickyBar from "./components/StickyBar";
 
 type Props = Readonly<{
   children: React.ReactNode;
