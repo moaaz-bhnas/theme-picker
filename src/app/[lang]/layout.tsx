@@ -3,10 +3,7 @@ import "./globals.css";
 import consts from "@/lib/consts";
 import isRtl from "@/lib/helpers/isRtl";
 import { getDictionary } from "@/lib/helpers/dictionaries";
-import StickyBar from "@/components/StickyBar";
-import Link from "next/link";
-import { PaletteIcon } from "lucide-react";
-import LanguagePicker from "./components/LanguagePicker";
+
 import { Locale } from "@/types/Locale";
 
 const geistSans = localFont({
@@ -50,19 +47,7 @@ type Props = Readonly<{
 export default function RootLayout({ children, params }: Props) {
   return (
     <html lang={params.lang} dir={isRtl(params.lang) ? "rtl" : "ltr"}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <StickyBar isStickyTop>
-          <nav className="h-full flex items-center justify-between">
-            <Link href={`/`} className="text-2xl font-bold">
-              <PaletteIcon />
-            </Link>
-
-            <LanguagePicker lang={params.lang} />
-          </nav>
-        </StickyBar>
-
-        {children}
-      </body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
     </html>
   );
 }

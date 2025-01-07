@@ -27,10 +27,10 @@ async function Themes({ dictionary, lang }: Props) {
         <p className="text-lg text-muted-foreground">{dictionary.subheading}</p>
       </div>
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {themes.map(({ handle, image, localized_fields }, index) => {
+        {themes.map(({ uuid, image, localized_fields }, index) => {
           const localizedFields = (localized_fields as LocalizedFields)[lang];
           return (
-            <Link key={index} href={`/themes/${handle}/${v4()}`} className="h-full">
+            <Link key={index} href={`/themes/${uuid}/customize/${v4()}`} className="h-full">
               <Card key={index} className="shadow-md hover:shadow-lg transition cursor-pointer h-full flex flex-col">
                 <CardHeader className="p-0">
                   <Image

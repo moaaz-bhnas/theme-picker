@@ -9,6 +9,44 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      customizations: {
+        Row: {
+          color: string
+          created_at: string
+          localized_fields: Json
+          logo: string
+          raduis: number
+          theme_uuid: string
+          uuid: string
+        }
+        Insert: {
+          color: string
+          created_at?: string
+          localized_fields: Json
+          logo: string
+          raduis: number
+          theme_uuid: string
+          uuid?: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          localized_fields?: Json
+          logo?: string
+          raduis?: number
+          theme_uuid?: string
+          uuid?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "customizations_theme_uuid_fkey"
+            columns: ["theme_uuid"]
+            isOneToOne: false
+            referencedRelation: "themes"
+            referencedColumns: ["uuid"]
+          },
+        ]
+      }
       themes: {
         Row: {
           created_at: string
