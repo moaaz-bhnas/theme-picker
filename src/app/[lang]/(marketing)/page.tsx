@@ -1,4 +1,4 @@
-import Container from "@/components/Container";
+import Container from "@/app/[lang]/(marketing)/components/Container";
 import { Separator } from "@/components/ui/separator";
 import Hero from "./components/Hero";
 import Features from "./components/Features";

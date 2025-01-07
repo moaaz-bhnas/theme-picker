@@ -54,7 +54,7 @@ export function generateCoolName(): string {
 export function initCustomization(uuid: string, themeUuid: string) {
   const result: TablesInsert<"customizations"> = {
     uuid,
-    handle: generateCoolName(),
+    name: generateCoolName(),
     color: "zinc",
     localized_fields: {
       en: {},

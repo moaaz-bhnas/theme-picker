@@ -11,6 +11,11 @@ export default class SupabaseUtils {
     return result.data || [];
   });
 
+  getTheme = cache(async <Table = Tables<"themes">>(uuid: string, fields = "*") => {
+    const result = await this.supabase.from("themes").select(fields).eq("uuid", uuid).returns<Table[]>().single();
+    return result.data || null;
+  });
+
   getThemeImage(bucket: string, path: string) {
     const result = this.supabase.storage.from(bucket).getPublicUrl(path);
     return result.data.publicUrl || "";

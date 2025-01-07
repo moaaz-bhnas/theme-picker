@@ -13,9 +13,9 @@ export type Database = {
         Row: {
           color: string
           created_at: string
-          handle: string
           localized_fields: Json
           logo: string
+          name: string
           raduis: number
           theme_uuid: string
           uuid: string
@@ -23,9 +23,9 @@ export type Database = {
         Insert: {
           color: string
           created_at?: string
-          handle?: string
           localized_fields: Json
           logo: string
+          name?: string
           raduis: number
           theme_uuid: string
           uuid?: string
@@ -33,9 +33,9 @@ export type Database = {
         Update: {
           color?: string
           created_at?: string
-          handle?: string
           localized_fields?: Json
           logo?: string
+          name?: string
           raduis?: number
           theme_uuid?: string
           uuid?: string
