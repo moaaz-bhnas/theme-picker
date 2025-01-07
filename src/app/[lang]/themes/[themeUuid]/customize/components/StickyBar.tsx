@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import consts from "@/lib/consts";
+import consts from "@/lib/config/consts";
 
 type Props = {
   isStickyTop: boolean;

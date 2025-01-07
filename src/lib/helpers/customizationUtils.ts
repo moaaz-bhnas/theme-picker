@@ -1,51 +1,10 @@
 import { TablesInsert } from "@/types/supabase/Database";
+import consts from "../config/consts";
 
 export function generateCoolName(): string {
-  const adjectives = [
-    "Vibrant",
-    "Serene",
-    "Lush",
-    "Radiant",
-    "Bold",
-    "Elegant",
-    "Mystic",
-    "Daring",
-    "Cozy",
-    "Dynamic",
-    "Majestic",
-    "Royal",
-    "Sleek",
-    "Chic",
-    "Rustic",
-    "Timeless",
-    "Epic",
-    "Modern",
-  ];
-
-  const nouns = [
-    "Sunset",
-    "Harmony",
-    "Bliss",
-    "Aura",
-    "Galaxy",
-    "Echo",
-    "Vibe",
-    "Haven",
-    "Whisper",
-    "Fusion",
-    "Dream",
-    "Pulse",
-    "Flare",
-    "Nova",
-    "Zen",
-    "Mirage",
-    "Frost",
-    "Charm",
-  ];
-
   // Pick random adjective and noun
-  const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
-  const noun = nouns[Math.floor(Math.random() * nouns.length)];
+  const adj = consts.ADJECTIVES[Math.floor(Math.random() * consts.ADJECTIVES.length)];
+  const noun = consts.NOUNS[Math.floor(Math.random() * consts.NOUNS.length)];
 
   // Combine them
   return `${adj} ${noun}`;
@@ -56,12 +15,11 @@ export function initCustomization(uuid: string, themeUuid: string) {
     uuid,
     name: generateCoolName(),
     color: "zinc",
+    raduis: 0.5,
     localized_fields: {
       en: {},
       ar: {},
     },
-    logo: "",
-    raduis: 0.5,
     theme_uuid: themeUuid,
   };
 
