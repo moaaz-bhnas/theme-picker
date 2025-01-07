@@ -4,6 +4,7 @@ import Link from "next/link";
 import { PaletteIcon } from "lucide-react";
 import { Locale } from "@/types/Locale";
 import LanguagePicker from "./components/LanguagePicker";
+import { getDictionary } from "@/lib/helpers/dictionaries";
 
 type Props = Readonly<{
   children: React.ReactNode;
@@ -11,6 +12,20 @@ type Props = Readonly<{
     lang: Locale;
   };
 }>;
+
+export async function generateMetadata({ params }: { params: { lang: Locale } }) {
+  const {
+    "marketing-layout": { metadata: dict },
+  } = await getDictionary(params.lang);
+
+  return {
+    title: {
+      default: dict.title.default,
+      template: dict.title.template,
+    },
+    description: dict.description,
+  };
+}
 
 function MarketingLayout({ children, params }: Props) {
   return (

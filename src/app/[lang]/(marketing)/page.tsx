@@ -13,7 +13,6 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
 
   return {
     title: dict.title,
-    description: dict.description,
   };
 }
 
