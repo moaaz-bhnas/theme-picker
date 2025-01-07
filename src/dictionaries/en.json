@@ -1,5 +1,5 @@
 {
-  "root-layout": {
+  "marketing-layout": {
     "metadata": {
       "title": {
         "default": "Theme Picker",
@@ -8,10 +8,18 @@
       "description": "Discover customizable eCommerce themes designed for performance, accessibility, and SEO. Choose Minimalist, Bold & Dynamic, or Classic styles to enhance your store's experience."
     }
   },
+  "customize-layout": {
+    "metadata": {
+      "title": {
+        "default": "Customize Theme",
+        "template": "%s | Customize Theme"
+      },
+      "description": "Discover customizable eCommerce themes designed for performance, accessibility, and SEO. Choose Minimalist, Bold & Dynamic, or Classic styles to enhance your store's experience."
+    }
+  },
   "home-page": {
     "metadata": {
-      "title": "Home",
-      "description": "Discover customizable eCommerce themes designed for performance, accessibility, and SEO. Choose Minimalist, Bold & Dynamic, or Classic styles to enhance your store's experience."
+      "title": "Home"
     }
   },
   "hero": {
