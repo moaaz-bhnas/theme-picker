@@ -13,6 +13,7 @@ export type Database = {
         Row: {
           color: string
           created_at: string
+          handle: string
           localized_fields: Json
           logo: string
           raduis: number
@@ -22,6 +23,7 @@ export type Database = {
         Insert: {
           color: string
           created_at?: string
+          handle?: string
           localized_fields: Json
           logo: string
           raduis: number
@@ -31,6 +33,7 @@ export type Database = {
         Update: {
           color?: string
           created_at?: string
+          handle?: string
           localized_fields?: Json
           logo?: string
           raduis?: number
