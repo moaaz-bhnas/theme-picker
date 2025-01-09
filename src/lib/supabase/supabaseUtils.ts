@@ -1,6 +1,4 @@
-import "server-only";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { cache } from "react";
 import { Database, Tables, TablesInsert } from "@/types/supabase/Database";
 import { err, ok } from "neverthrow";
 
@@ -35,30 +33,32 @@ export default class SupabaseUtils {
   }
 
   // Methods for themes
-  getThemes = cache(async () => {
+  async getThemes() {
     const result = await this.supabase.from("themes").select("*");
     if (result.error) return err(result.error);
 
     return ok(result.data);
-  });
+  }
 
-  getTheme = cache(async <Table = Tables<"themes">>(uuid: string, fields = "*") =>
-    this.fetchSingle<Table>("themes", { uuid }, fields)
-  );
+  async getTheme<Table = Tables<"themes">>(uuid: string, fields = "*") {
+    return this.fetchSingle<Table>("themes", { uuid }, fields);
+  }
 
-  getThemeByHandle = cache(async <Table = Tables<"themes">>(handle: string, fields = "*") =>
-    this.fetchSingle<Table>("themes", { handle }, fields)
-  );
+  async getThemeByHandle<Table = Tables<"themes">>(handle: string, fields = "*") {
+    return this.fetchSingle<Table>("themes", { handle }, fields);
+  }
 
   // Methods for customizations
-  getCustomization = cache(async <Table = Tables<"customizations">>(uuid: string, fields = "*") =>
-    this.fetchSingle<Table>("customizations", { uuid }, fields)
-  );
+  async getCustomization<Table = Tables<"customizations">>(uuid: string, fields = "*") {
+    return this.fetchSingle<Table>("customizations", { uuid }, fields);
+  }
 
-  createCustomization = async <Table = Tables<"customizations">>(
+  async createCustomization<Table = Tables<"customizations">>(
     customization: TablesInsert<"customizations">,
     fields = "*"
-  ) => this.createRecord<Table>("customizations", customization, fields);
+  ) {
+    this.createRecord<Table>("customizations", customization, fields);
+  }
 
   getThemeImage(bucket: string, path: string) {
     const result = this.supabase.storage.from(bucket).getPublicUrl(path);
