@@ -1,4 +1,9 @@
-export function getThemeName(pathname: string): string | null {
+export function getThemeName(pathname: string): string {
   const match = pathname.match(/\/themes\/customize\/[^/]+\/([^/]+)/); // Extract theme name based on structure
-  return match ? match[1] : null; // Return the theme name or null if not found
+
+  if (!match) {
+    throw new Error("Theme name not found");
+  }
+
+  return match[1]; // Return the theme name or null if not found
 }
