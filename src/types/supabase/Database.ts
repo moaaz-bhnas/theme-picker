@@ -14,7 +14,6 @@ export type Database = {
           color: string
           created_at: string
           localized_fields: Json
-          logo: string
           name: string
           raduis: number
           theme_uuid: string
@@ -24,7 +23,6 @@ export type Database = {
           color: string
           created_at?: string
           localized_fields: Json
-          logo: string
           name?: string
           raduis: number
           theme_uuid: string
@@ -34,7 +32,6 @@ export type Database = {
           color?: string
           created_at?: string
           localized_fields?: Json
-          logo?: string
           name?: string
           raduis?: number
           theme_uuid?: string

@@ -2,7 +2,7 @@ import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import consts from "./lib/consts";
+import consts from "./lib/config/consts";
 
 /**
  * Get the preferred locale based on the request headers.
