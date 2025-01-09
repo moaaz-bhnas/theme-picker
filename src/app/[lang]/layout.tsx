@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import "./globals.css";
+import "../globals.css";
 import consts from "@/lib/config/consts";
 import isRtl from "@/lib/helpers/isRtl";
 

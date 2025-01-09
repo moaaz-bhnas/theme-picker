@@ -20,6 +20,8 @@ async function Themes({ dictionary, lang }: Props) {
   const supabaseUtils = new SupabaseUtils(createClient());
   const themes = await supabaseUtils.getThemes();
 
+  if (themes.isErr()) return <></>;
+
   return (
     <section id="themes" className="space-y-4">
       <div className="space-y-4">
@@ -27,10 +29,10 @@ async function Themes({ dictionary, lang }: Props) {
         <p className="text-lg text-muted-foreground">{dictionary.subheading}</p>
       </div>
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {themes.map(({ uuid, image, localized_fields }, index) => {
+        {themes.value.map(({ handle, image, localized_fields }, index) => {
           const localizedFields = (localized_fields as LocalizedFields)[lang];
           return (
-            <Link key={index} href={`/themes/${uuid}/customize/${v4()}`} className="h-full">
+            <Link key={index} href={`/themes/customize/${v4()}/${handle}`} className="h-full">
               <Card key={index} className="shadow-md hover:shadow-lg transition cursor-pointer h-full flex flex-col">
                 <CardHeader className="p-0">
                   <Image
