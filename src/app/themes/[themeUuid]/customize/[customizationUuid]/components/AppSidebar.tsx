@@ -28,8 +28,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import Customizer from "./Customizer";
 
 // This is sample data.
 const data = {
@@ -162,26 +165,36 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { isMobile } = useSidebar();
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
 
-        {/* <Button variant="outline" type="button">
-          <PaletteIcon />
-          Customize
-        </Button> */}
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-              size={"lg"}
-            >
-              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-accent text-sidebar-accent-foreground border">
-                <PaletteIcon className="size-4" />
-              </div>
-              <span className="truncate font-semibold">Customize</span>
-            </SidebarMenuButton>
+            <Popover>
+              <PopoverTrigger asChild>
+                <SidebarMenuButton
+                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                  size={"lg"}
+                >
+                  <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-accent text-sidebar-accent-foreground border">
+                    <PaletteIcon className="size-4" />
+                  </div>
+                  <span className="truncate font-semibold">Customize</span>
+                </SidebarMenuButton>
+              </PopoverTrigger>
+              <PopoverContent
+                className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+                align="start"
+                side={isMobile ? "bottom" : "right"}
+                sideOffset={4}
+              >
+                <Customizer />
+              </PopoverContent>
+            </Popover>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
