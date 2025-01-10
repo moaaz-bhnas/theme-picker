@@ -4,25 +4,27 @@ import SupabaseUtils from "@/lib/supabase/supabaseUtils";
 import { Database, Tables } from "@/types/supabase/Database";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { initCustomization } from "./initCustomization";
+import { ErrorCode } from "@/types/supabase/Custom";
 
 type JoinedCustomization = Tables<"customizations"> & { themes: Tables<"themes"> };
 
 export async function getOrCreateCustomization(
   supabase: SupabaseClient<Database>,
   customizationUuid: string,
-  themeHandle: string
+  themeUuid: string
 ) {
   const supabaseUtils = new SupabaseUtils(supabase);
 
-  const result = await supabaseUtils.getCustomization<JoinedCustomization>(customizationUuid, `*, themes(*)`);
-  if (result.isErr()) return result;
+  const getResult = await supabaseUtils.getCustomization<JoinedCustomization>(customizationUuid, `*, themes(*)`);
 
-  const themeResult = await supabaseUtils.getThemeByHandle(themeHandle);
-  if (themeResult.isErr()) return themeResult;
+  if (getResult.isOk() || (getResult.isErr() && getResult.error.code != ErrorCode.NOT_FOUND)) {
+    return getResult;
+  }
 
-  const newCustomizationResult = await supabaseUtils.createCustomization(
-    initCustomization(customizationUuid, themeResult.value.uuid)
+  const createResult = await supabaseUtils.createCustomization<JoinedCustomization>(
+    initCustomization(customizationUuid, themeUuid),
+    `*, themes(*)`
   );
 
-  return newCustomizationResult;
+  return createResult;
 }

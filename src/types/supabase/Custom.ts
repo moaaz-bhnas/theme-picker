@@ -5,3 +5,7 @@ export type LocalizedFields = {
     [key: string]: string;
   };
 };
+
+export enum ErrorCode {
+  NOT_FOUND = "PGRST116",
+}
