@@ -25,6 +25,9 @@ function getLocale(request: NextRequest): string {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Exclude paths starting with "/themes"
+  if (pathname.startsWith("/themes")) return;
+
   // Check if the pathname already contains a locale
   const pathnameHasLocale = consts.LOCALES.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
