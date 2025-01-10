@@ -19,16 +19,15 @@ import { getOrCreateCustomization } from "./lib/getOrCreateCustomization";
 type Props = {
   children: React.ReactNode;
   params: {
-    lang: Locale;
     themeUuid: string;
     customizationUuid: string;
   };
 };
 
-export async function generateMetadata({ params }: { params: { lang: Locale } }) {
+export async function generateMetadata() {
   const {
     "customize-layout": { metadata: dict },
-  } = await getDictionary(params.lang);
+  } = await getDictionary(Locale.en);
 
   return {
     title: {
@@ -40,7 +39,7 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
 }
 
 async function CustomizeLayout({ children, params }: Props) {
-  const { lang, themeUuid, customizationUuid } = params;
+  const { themeUuid, customizationUuid } = params;
 
   const customization = await getOrCreateCustomization(createClient(), customizationUuid, themeUuid);
 
@@ -64,7 +63,7 @@ async function CustomizeLayout({ children, params }: Props) {
                   <ChevronLeftIcon />
                 </Link>
                 <h1 className="text-lg font-extrabold tracking-tight">
-                  {(customization.value.themes.localized_fields as LocalizedFields)[lang].title}
+                  {(customization.value.themes.localized_fields as LocalizedFields)[Locale.en].title}
                 </h1>
               </div>
               <div className="flex gap-x-2">
