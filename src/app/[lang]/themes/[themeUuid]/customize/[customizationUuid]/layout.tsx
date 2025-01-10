@@ -4,18 +4,24 @@ import { getDictionary } from "@/lib/helpers/dictionaries";
 import { Locale } from "@/types/Locale";
 import { AppSidebar } from "./components/AppSidebar";
 import Link from "next/link";
-import { ChevronLeftIcon, PaletteIcon } from "lucide-react";
+import { ChevronLeftIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { generateCoolName } from "@/lib/helpers/customizationUtils";
-import HeaderThemeName from "./components/HeaderThemeName";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { createClient } from "@/lib/supabase/server";
+import SupabaseUtils from "@/lib/supabase/supabaseUtils";
+import { LocalizedFields } from "@/types/supabase/Custom";
+import { Tables } from "@/types/supabase/Database";
+import { initCustomization } from "./lib/initCustomization";
+import { generateCoolName } from "./lib/generateCoolName";
+import { getOrCreateCustomization } from "./lib/getOrCreateCustomization";
 
 type Props = {
   children: React.ReactNode;
   params: {
     lang: Locale;
     themeUuid: string;
+    customizationUuid: string;
   };
 };
 
@@ -34,8 +40,16 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
 }
 
 async function CustomizeLayout({ children, params }: Props) {
+  const { lang, themeUuid, customizationUuid } = params;
+
+  const customization = await getOrCreateCustomization(createClient(), customizationUuid, themeUuid);
+
+  if (customization.isErr()) {
+    throw new Error(customization.error.message);
+  }
+
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={customization.value.themes} customizations={customization.value}>
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset>
@@ -49,13 +63,11 @@ async function CustomizeLayout({ children, params }: Props) {
                 <Link href={`/`} aria-label="back">
                   <ChevronLeftIcon />
                 </Link>
-                <HeaderThemeName lang={params.lang} />
+                <h1 className="text-lg font-extrabold tracking-tight">
+                  {(customization.value.themes.localized_fields as LocalizedFields)[lang].title}
+                </h1>
               </div>
               <div className="flex gap-x-2">
-                {/* <Button variant="outline" type="button">
-                <PaletteIcon />
-                Customize
-              </Button> */}
                 <Input type="text" value={generateCoolName()} placeholder="Name your theme.." />
                 <Button variant="default" type="button">
                   Save
@@ -65,7 +77,6 @@ async function CustomizeLayout({ children, params }: Props) {
           </header>
           <div className="flex flex-1 flex-col gap-4 p-4">{children}</div>
         </SidebarInset>
-        {/* {children} */}
       </SidebarProvider>
     </ThemeProvider>
   );

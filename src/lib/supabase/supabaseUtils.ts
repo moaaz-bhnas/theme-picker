@@ -29,7 +29,7 @@ export default class SupabaseUtils {
 
     if (result.error) return err(result.error);
 
-    return result.data;
+    return ok(result.data);
   }
 
   // Methods for themes
@@ -57,7 +57,7 @@ export default class SupabaseUtils {
     customization: TablesInsert<"customizations">,
     fields = "*"
   ) {
-    this.createRecord<Table>("customizations", customization, fields);
+    return this.createRecord<Table>("customizations", customization, fields);
   }
 
   getThemeImage(bucket: string, path: string) {
