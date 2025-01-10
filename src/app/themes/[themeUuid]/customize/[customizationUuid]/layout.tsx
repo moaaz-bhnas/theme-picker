@@ -67,7 +67,7 @@ async function CustomizeLayout({ children, params }: Props) {
                 </h1>
               </div>
               <div className="flex gap-x-2">
-                <Input type="text" value={generateCoolName()} placeholder="Name your theme.." />
+                <Input type="text" value={customization.value.name} placeholder="Name your theme.." />
                 <Button variant="default" type="button">
                   Save
                 </Button>
